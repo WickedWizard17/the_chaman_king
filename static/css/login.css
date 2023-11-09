@@ -1,0 +1,193 @@
+:root {
+    --amarillo: #FCB84A;
+    --verde_oscuro: #3C5843;
+    --verde: #378968;
+    --verde_claro: #daf600;
+    --verde_agua: #65ADA5;
+    --verde_claro_transparente: rgba(175, 186, 55, 0.2);
+    --negro_grisaseo: #24252A;
+    --gris: #999;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background-image: url(resources/fondo3.jpg);
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: soft-light;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.ventana-login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 80%;
+    height: 100%;
+}
+
+
+.login-izq {
+    display: flex;
+    width: 50%;
+    height: 70%;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    text-align: center;
+    border-radius: 2rem 0 0 2rem;
+}
+
+.login-izq img {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.login-izq span {
+    font-size: 1.2rem;
+    margin: 0 0 0.2rem 0;
+}
+
+.login-der {
+    background-image: linear-gradient(to bottom right, var(--amarillo), #ffc86f);
+    width: 50%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0 2rem 2rem 0;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.inputText {   
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 70%;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-size: 2rem;
+}
+
+.inputText input {
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 0 1rem 0 1rem;
+    width: 100%;
+}
+
+.login-btn {
+    border: none;
+    background-image: linear-gradient(to bottom right, var(--verde_agua), rgb(139, 205, 199));
+    cursor: pointer;
+    border-radius: 2rem;
+    padding: .7rem 1rem .7rem 1rem;
+}
+
+.login-btn:hover {
+    background-image: linear-gradient(to bottom right, rgb(139, 205, 199), var(--verde_agua));
+}
+
+.login-btn a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1.2rem;
+}
+
+.forgot {
+    cursor: pointer;
+    color: #C82929;
+}
+
+.forgot:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 1rem;
+    margin: 15% auto;
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    border: 2px solid #24252A;
+    width: 70%;
+}
+
+.encabezado-modal {
+    background-color: #378968;
+    border-radius: 0.9rem 0.9rem 0 0;
+    color: white;
+    font-size: 2rem;
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+.close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    background-color: none;
+    border: 2px solid #C82929;
+    color: #C82929;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem
+}
+
+.close ion-icon {
+    margin-right: 1rem;
+}
+
+.close:hover, .close:focus {
+    background-color: #C82929;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}

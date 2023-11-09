@@ -1,0 +1,172 @@
+:root {
+    --amarillo: #FCB84A;
+    --verde_oscuro: #3C5843;
+    --verde: #378968;
+    --verde_claro: #afba37;
+    --verde_agua: #65ADA5;
+    --verde_claro_transparente: rgba(175, 186, 55, 0.2);
+    --negro_grisaseo: #24252A;
+    --gris: #999;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    position: relative;
+    font-size: 4rem;
+    color: var(--verde);
+    text-align: center;
+    font-weight: bolder;
+}
+
+.contenedor-productos {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    gap: 1rem;
+}
+
+.btn-ordenar {
+    background-color: none;
+    color: var(--negro_grisaseo);
+    border: 2px solid var(--negro_grisaseo);
+    width: fit-content;
+    padding: 8px 16px 8px 16px;
+    align-self: flex-end;
+    border-radius: 0.7rem;
+    max-width: fit-content;
+}
+
+.btn-ordenar:hover {
+    cursor: pointer;
+    background-color: var(--negro_grisaseo);
+    color: white;
+}
+
+.producto {
+    display: flex;
+    gap: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+}
+
+.producto:hover {
+    cursor: pointer;
+    border: 2px solid var(--verde_claro);
+    box-shadow: 5px 5px 5px var(--verde_claro);
+}
+
+.producto img {
+    width: 150px;
+}
+
+.info-producto-izq {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70%;
+}
+
+.nombre-producto {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--verde);
+}
+
+
+
+.enfermedades-producto {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.info-producto-der {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    width: max-content;
+}
+
+.codigo-producto {
+    font-style: italic;
+}
+
+.fecha-cad-producto {
+    color: #66ABFB;
+}
+
+.fecha-cad-producto-med {
+    color: #FDE61D;
+    font-weight: bold;
+}
+
+.fecha-cad-producto-bad {
+    color: #C82929;
+    font-weight: bold;
+}
+
+.existencia-producto {
+    color: #66ABFB;
+}
+
+.existencia-producto-med {
+    color: #FDE61D;
+    font-weight: bold;
+}
+
+.existencia-producto-bad {
+    color: #C82929;
+    font-weight: bold;
+}
+
+.precio-producto {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.precio-venta {
+    color: var(--verde);
+}
+
+.precio-compra {
+    color: var(--verde_claro);
+}
+
+.btn-agregar {
+    background-color: none;
+    color: var(--verde);
+    font-size: 1.1rem;
+    border: 2px solid var(--verde);
+    width: fit-content;
+    padding: 8px 16px 8px 16px;
+    border-radius: 0.7rem;
+    align-self: flex-end;
+    margin: 1rem 0 0 0;
+}
+
+.btn-agregar:hover {
+    cursor: pointer;
+    background-color: var(--verde);
+    color: white;
+}

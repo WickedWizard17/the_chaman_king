@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+
+{% block javascript %}
+    <script>
+        function eliminar_empleado(id) {
+            Swal.fire({
+                'title': 'Eliminar empleado',
+                'text': 'Esta acción no se puede deshacer, ¿seguro que deseas eliminar?',
+                'icon': 'question',
+                'showCancelButton': true,
+                'cancelButtonText': 'Cancelar',
+                'confirmButtonText': 'Eliminar',
+                'reverseButtons': true,
+                'confirmButtonColor': '#E74A3B',
+            })
+            .then(function (result) {
+                if(result.isConfirmed) {
+                    window.location.href = '/empleados/empleados-delete/'+ id + '/'
+                }
+            })
+        }
+    </script>
+{% endblock %}
+
+
+{% block content %}
+
+    <h1 class="title">
+        <ion-icon name="people-outline"></ion-icon>
+        EMPLEADOS
+    </h1>
+
+    <div class="contenedor-table">
+        <div class="contenedor-btn-ordenar">
+                <ion-icon name="filter-outline"></ion-icon>
+                <label for="ordenar" class="label-ordenar">Ordenar por:</label>
+                <select id="ordenar" class="dropdown-ordenar">
+                    <option value="clave">Clave</option>
+                    <option value="nombre">Nombre</option>
+                    <option value="telefono">Teléfono</option>
+                    <option value="correo">Correo</option>
+                    <option value="sueldo">Sueldo</option>
+                    <option value="turno">Turno</option>
+                    <option value="puesto">Puesto</option>
+                </select>
+        </div>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="table">
+            <tr class="encabezado-table">
+                <th>Clave del empleado</th>
+                <th>Empleado</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Sueldo</th>
+                <th>Turno</th>
+                <th>Puesto</th>
+                <th>Contraseña</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for empleado in empleados %}
+                <tr>
+                    <td>{{ empleado.id_emp }}</td>
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.telefono }}</td>
+                    <td>{{ empleado.correo }}</td>
+                    <td>$ {{ empleado.sueldo }}</td>
+                    <td>{{ empleado.horario }}</td>
+                    <td>{{ empleado.puesto }}</td>
+                    <td>{{ empleado.contrasena }}</td>
+                    <td>
+                        <a href="#" onclick="eliminar_empleado({{ empleado.id_emp }})">
+                                <ion-icon name="trash-outline"></ion-icon>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'empleados_edit' empleado.id_emp %}"><ion-icon name="create-outline"></ion-icon></a>
+                    </td>
+                    <td>
+                        <a><ion-icon name="eye-outline"></ion-icon></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <div class="contenedor-btn-agregar">
+            <a class="btn-agregar" href="{% url 'empleados_new' %}">
+                <ion-icon name="add-circle-outline"></ion-icon>
+                AGREGAR EMPLEADO
+            </a>
+        </div>
+    </div>
+{% endblock %}

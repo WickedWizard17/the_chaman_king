@@ -1,0 +1,171 @@
+{% extends 'base/base.html' %}
+
+{% block javascript %}
+    <script>
+        function eliminar_producto(id) {
+            Swal.fire({
+                'title': 'Eliminar producto',
+                'text': 'Esta acción no se puede deshacer, ¿seguro que deseas eliminar?',
+                'icon': 'question',
+                'showCancelButton': true,
+                'cancelButtonText': 'Cancelar',
+                'confirmButtonText': 'Eliminar',
+                'reverseButtons': true,
+                'confirmButtonColor': '#E74A3B',
+            })
+                .then(function (result) {
+                    if (result.isConfirmed) {
+                        window.location.href = '/productos/productos-delete/' + id + '/'
+                    }
+                })
+        }
+    </script>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="contenedor-principal">
+        <nav class="nav-izq">
+            <span class="filtrar-title">Filtrar por:</span>
+            <span class="filtrar-contenido">
+                <span class="filtrar-subtitle">Precio de compra:</span>
+                <span class="filtrar-precio">
+                    <div>
+                        de
+                        <input type="number" placeholder="$ 0">
+                    </div>
+                    <div>
+                        a
+                        <input type="number" placeholder="$ 30">
+                    </div>
+                </span>
+            </span>
+            <span class="filtrar-contenido">
+                <label for="presentacion" class="filtrar-subtitle">Presentación:</label>
+                <select id="presentacion" class="dropdown-presentacion">
+                    <option value="terrestre">Cualquiera</option>
+                    <option value="terrestre">Cápsula</option>
+                    <option value="aereo">Tableta</option>
+                    <option value="hotel">Pastilla</option>
+                    <option value="maritimo">Bebibles</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </span>
+            <span class="filtrar-contenido">
+                <span class="filtrar-subtitle">Fecha de caducidad:</span>
+                <div class="filtrar-fecha">
+                    <span>
+                        del
+                        <input type="date">
+                    </span>
+                    <span>
+                        al
+                        <input type="date">
+                    </span>
+                </div>
+            </span>
+            <span class="filtrar-contenido">
+                <span class="filtrar-subtitle">Tratamiento:</span>
+                <span>
+                    <li>Irritación</li>
+                    <li>Artitris</li>
+                    <li>Hipertensión</li>
+                    <a class="add-enfermedad">
+                        <ion-icon name="add-outline"></ion-icon>
+                        Añadir enfermedad
+                    </a>
+                </span>
+            </span>
+        </nav>
+
+        <div class="contenedor-productos">
+            <h1 class="title">
+                <ion-icon name="file-tray-stacked-outline"></ion-icon>
+                PRODUCTOS
+            </h1>
+
+            <div class="top-btn">
+                <div class="contenedor-btn-agregar">
+                    <a class="btn-agregar" href="{% url 'productos_new' %}">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                        AGREGAR PRODUCTO
+                    </a>
+                </div>
+
+                <div class="contenedor-btn-ordenar">
+                    <ion-icon name="filter-outline"></ion-icon>
+                    <label for="ordenar" class="label-ordenar">Ordenar por:</label>
+                    <select id="ordenar" class="dropdown-ordenar">
+                        <option value="codigo">Código</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="fecha_cad">Fecha de caducidad</option>
+                        <option value="existencia">Existencia</option>
+                        <option value="precio_comp">Precio compra</option>
+                        <option value="precio_vent">Precio de venta</option>
+                    </select>
+                </div>
+            </div>
+
+            {% for producto in productos %}
+                <article class="producto">
+                    <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}">
+                    <div class="info-producto-izq">
+                        <span class="nombre-producto">
+                            {{ producto.nombre }}
+                            <a href="#" onclick="eliminar_producto({{ producto.id }})">
+                                <ion-icon name="trash-outline"></ion-icon>
+                        </a>
+                            <a href="{% url 'productos_edit' producto.codigo %}"><ion-icon
+                                    name="create-outline"></ion-icon></a>
+                        </span>
+                        <span class="descripcion-producto">
+                        {{ producto.descripcion }}
+                    </span>
+                        <span class="enfermedades-producto">
+                        {{ producto.cura }}
+                    </span>
+                    </div>
+                    <div class="info-producto-der">
+                    <span class="codigo-producto">
+                        {{ producto.codigo }}
+                    </span>
+                        <span class="presentacion-producto">
+                        {{ producto.presentacion }}
+                    </span>
+
+                        <span class="fecha-cad-producto">
+                        {{ producto.caducidad }}
+                    </span>
+
+                        {% if producto.existencia > 10 %}
+                            <span class="existencia-producto">
+                        {{ producto.existencia }} en existencia
+                    </span>
+                        {% endif %}
+                        {% if producto.existencia < 10 and producto.existencia > 5 %}
+                            <span class="existencia-producto-med">
+                        {{ producto.existencia }} en existencia
+                    </span>
+                        {% endif %}
+                        {% if producto.existencia < 5 %}
+                            <span class="existencia-producto-bad">
+                        {{ producto.existencia }} en existencia
+                    </span>
+                        {% endif %}
+
+                        <div class="precio-producto">
+                        <span class="precio-venta">
+                            $ {{ producto.precio_venta }}
+                        </span>
+                            <span class="precio-compra">
+                            $ {{ producto.precio_compra }}
+                        </span>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
