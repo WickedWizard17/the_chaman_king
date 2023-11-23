@@ -1,0 +1,20 @@
+{% extends 'base/base_agregar.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>
+        <ion-icon name="people-outline"></ion-icon>
+        Nuevo Proveedor
+    </h1>
+
+    <section class="contenedor-form">
+        <form class="form-agregar" method="post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <div>
+                <a id="btn-cancelar" href="{% url 'proveedoresC_list' %}" class="btn-cancelar">Cancelar</a>
+                <button id="btn-aceptar" type="submit" class="btn-aceptar">Agregar</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

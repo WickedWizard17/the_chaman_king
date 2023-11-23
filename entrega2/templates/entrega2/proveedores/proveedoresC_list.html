@@ -1,0 +1,90 @@
+{% extends 'base/baseC.html' %}
+
+{% block javascript %}
+    <script>
+        function eliminar_proveedor(id) {
+            Swal.fire({
+                'title': 'Eliminar proveedor',
+                'text': 'Esta acción no se puede deshacer, ¿seguro que deseas eliminar?',
+                'icon': 'question',
+                'showCancelButton': true,
+                'cancelButtonText': 'Cancelar',
+                'confirmButtonText': 'Eliminar',
+                'reverseButtons': true,
+                'confirmButtonColor': '#E74A3B',
+            })
+            .then(function (result) {
+                if(result.isConfirmed) {
+                    window.location.href = '/proveedores/proveedores-delete/'+ id + '/'
+                }
+            })
+        }
+    </script>
+{% endblock %}
+
+
+{% block content %}
+
+    <h1 class="title">
+        <ion-icon name="briefcase-outline"></ion-icon>
+        PROVEEDORES
+    </h1>
+
+    <div class="contenedor-table">
+        <div class="contenedor-btn-ordenar">
+            <ion-icon name="filter-outline"></ion-icon>
+            <label for="ordenar" class="label-ordenar">Ordenar por:</label>
+            <select id="ordenar" class="dropdown-ordenar">
+                <option value="clave">Clave</option>
+                <option value="nombre">Nombre</option>
+                <option value="telefono">Teléfono</option>
+                <option value="correo">Correo</option>
+                <option value="ciudad">Ciudad</option>
+                <option value="cp">Código Postal</option>
+            </select>
+        </div>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="table">
+            <tr class="encabezado-table">
+                <th>Clave del Proveedor</th>
+                <th>Proveedor</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Ciudad</th>
+                <th>Código Postal</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td>{{ proveedor.id_pro }}</td>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.telefono }}</td>
+                <td>{{ proveedor.correo }}</td>
+                <td>{{ proveedor.ciudad }}</td>
+                <td>{{ proveedor.cp }}</td>
+                <td>
+                        <a href="{% url 'proveedoresC_delete' proveedor.id_pro %}" onclick="eliminar_provedor({{ proveedor.id_pro }})">
+                                <ion-icon name="trash-outline"></ion-icon>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'proveedoresC_update' proveedor.id_pro %}"><ion-icon name="create-outline"></ion-icon></a>
+                    </td>
+                    <td>
+                        <a><ion-icon name="eye-outline"></ion-icon></a>
+                    </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="contenedor-btn-agregar">
+            <a class="btn-agregar" href="{% url 'proveedoresC_new' %}">
+                <ion-icon name="add-circle-outline"></ion-icon>
+                AGREGAR PROVEEDOR
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -90,6 +90,20 @@ body {
     color: var(--verde);
 }
 
+.nombre-producto ion-icon[name="trash-outline"]:hover {
+    color: #C82929;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin: -2px;
+}
+
+.nombre-producto ion-icon[name="create-outline"]:hover {
+    color: #66ABFB;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin: -2px;
+}
+
 
 
 .enfermedades-producto {

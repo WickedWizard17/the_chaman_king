@@ -4,6 +4,19 @@ from empleados.models import Empleado, Producto, Proveedor
 
 
 class EmpleadoForm(forms.ModelForm):
+    TIPO=(
+        (0,"TIPO A"),
+        (1,"TIPO B"),
+        (2,"TIPO C")
+    )
+    horario = forms.DateField(
+        widget=forms.Select(choices=TIPO)
+    )
+    # horario = forms.MultipleChoiceField(
+    #     required=False,
+    #     widget=forms.CheckboxSelectMultiple,
+    #     choices=TIPO,
+    # )
     class Meta:
         # Seleccionar los campos que querramos mostrar en el formulario
         model = Empleado

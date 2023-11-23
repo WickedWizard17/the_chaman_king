@@ -42,7 +42,7 @@ class Producto(models.Model):
     existencia = models.IntegerField(default=0, blank=False, null=False)
     precio_compra = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
     precio_venta = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False)
-    caducidad = models.CharField(max_length=10, blank=False, null=False)
+    caducidad = models.DateField(blank=False, null=False)
     cura = models.TextField(max_length=100, blank=True, null=True)
     presentacion = models.CharField(max_length=20, blank=False, null=False)
     habilitado = models.BooleanField(default=True)

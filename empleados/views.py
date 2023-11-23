@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from empleados.models import Empleado, Producto, Proveedor
 from .forms import EmpleadoForm, ProductoForm, ProveedorForm
 from django.contrib import messages
+from django.utils.timezone import datetime, timedelta
 
 
 # //////////////////// Vistas para EMPLEADOS ////////////////////
@@ -111,8 +112,12 @@ def listar_productos(request):
     # Consulta a la BD: SELECT * FROM categorias
     productos = Producto.objects.all()
     data = {
-        'productos': productos
+        'productos': productos,
+        'fecha_hoy': datetime.now(),
+        'fecha_meses': datetime.now() + timedelta(days=180),
+        'fecha_mes':  datetime.now() + timedelta(days=30)
     }
+
     return render(request, 'empleados/productos/productos_list.html', data)
 
 

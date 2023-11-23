@@ -134,9 +134,22 @@
                         {{ producto.presentacion }}
                     </span>
 
-                        <span class="fecha-cad-producto">
-                        {{ producto.caducidad }}
+                        {% if producto.caducidad > fecha_meses.date %}
+                            <span class="fecha-cad-producto">
+                        {{ producto.caducidad|date:"d-m-Y" }}
                     </span>
+                        {% endif %}
+                        {% if producto.caducidad < fecha_meses.date and producto.caducidad > fecha_mes.date %}
+                            <span class="fecha-cad-producto-med">
+                        {{ producto.caducidad|date:"d-m-Y" }}
+                    </span>
+                        {% endif %}
+                        {% if producto.caducidad < fecha_mes.date %}
+                            <span class="fecha-cad-producto-bad">
+                        {{ producto.caducidad|date:"d-m-Y" }}
+                    </span>
+                        {% endif %}
+
 
                         {% if producto.existencia > 10 %}
                             <span class="existencia-producto">
