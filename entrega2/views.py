@@ -2,6 +2,8 @@ from django.urls import reverse_lazy
 from entrega2.models import Empleado, Proveedor, Producto
 from .forms import EmpleadoForm, ProveedorForm, ProductoForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.utils.timezone import datetime, timedelta
+
 
 # Create your views here.
 
@@ -15,10 +17,12 @@ class EmpleadoListView(ListView):
     # 4. Paginación
     # paginate_by = 5
 
+
 class EmpleadoCreateView(CreateView):
     template_name = 'entrega2/empleados/empleadosC_new.html'
     form_class = EmpleadoForm
     success_url = reverse_lazy('entrega2:empleadosC_list')
+
 
 class EmpleadoUpdateView(UpdateView):
     template_name = 'entrega2/empleados/empleadosC_update.html'
@@ -26,10 +30,12 @@ class EmpleadoUpdateView(UpdateView):
     model=Empleado
     success_url = reverse_lazy('entrega2:empleadosC_list')
 
+
 class EmpleadoDeleteView(DeleteView):
     model=Empleado
     template_name = 'entrega2/empleados/empleadosC_delete.html'
     success_url = reverse_lazy('entrega2:empleadosC_list')
+
 
 class ProveedorListView(ListView):
     # 1. Nombre del template que va a utilizar
@@ -41,10 +47,12 @@ class ProveedorListView(ListView):
     # 4. Paginación
     # paginate_by = 5
 
+
 class ProveedorCreateView(CreateView):
     template_name = 'entrega2/proveedores/proveedoresC_new.html'
     form_class = ProveedorForm
     success_url = reverse_lazy('entrega2:proveedoresC_list')
+
 
 class ProveedorUpdateView(UpdateView):
     template_name = 'entrega2/proveedores/proveedoresC_update.html'
@@ -52,10 +60,12 @@ class ProveedorUpdateView(UpdateView):
     model=Proveedor
     success_url = reverse_lazy('entrega2:proveedoresC_list')
 
+
 class ProveedorDeleteView(DeleteView):
     model=Proveedor
     template_name = 'entrega2/proveedores/proveedoresC_delete.html'
     success_url = reverse_lazy('entrega2:proveedoresC_list')
+
 
 class ProductoListView(ListView):
     # 1. Nombre del template que va a utilizar
@@ -67,16 +77,26 @@ class ProductoListView(ListView):
     # 4. Paginación
     # paginate_by = 5
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['fecha_hoy'] = datetime.now().date()
+        context['fecha_meses'] = (datetime.now() + timedelta(days=180)).date()
+        context['fecha_mes'] = (datetime.now() + timedelta(days=30)).date()
+        return context
+
+
 class ProductoCreateView(CreateView):
     template_name = 'entrega2/productos/productosC_new.html'
     form_class = ProductoForm
     success_url = reverse_lazy('entrega2:productosC_list')
+
 
 class ProductoUpdateView(UpdateView):
     template_name = 'entrega2/productos/productosC_update.html'
     form_class = ProductoForm
     model=Producto
     success_url = reverse_lazy('entrega2:productosC_list')
+
 
 class ProductoDeleteView(DeleteView):
     model=Producto

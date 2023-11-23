@@ -143,33 +143,40 @@
                         {{ producto.presentacion }}
                     </span>
 
-                        {% if producto.caducidad > fecha_meses.date %}
+
+                        {% if producto.caducidad >= fecha_meses %}
                             <span class="fecha-cad-producto">
                         {{ producto.caducidad|date:"d-m-Y" }}
                     </span>
                         {% endif %}
-                        {% if producto.caducidad < fecha_meses.date and producto.caducidad > fecha_mes.date %}
+
+
+                        {% if producto.caducidad < fecha_meses and producto.caducidad >= fecha_mes %}
                             <span class="fecha-cad-producto-med">
                         {{ producto.caducidad|date:"d-m-Y" }}
                     </span>
                         {% endif %}
-                        {% if producto.caducidad < fecha_mes.date %}
+
+
+                        {% if producto.caducidad < fecha_mes %}
                             <span class="fecha-cad-producto-bad">
                         {{ producto.caducidad|date:"d-m-Y" }}
                     </span>
                         {% endif %}
 
 
-                        {% if producto.existencia > 10 %}
+                        {% if producto.existencia >= 10 %}
                             <span class="existencia-producto">
                         {{ producto.existencia }} en existencia
                     </span>
                         {% endif %}
-                        {% if producto.existencia < 10 and producto.existencia > 5 %}
+
+                        {% if producto.existencia < 10 and producto.existencia >= 5 %}
                             <span class="existencia-producto-med">
                         {{ producto.existencia }} en existencia
                     </span>
                         {% endif %}
+
                         {% if producto.existencia < 5 %}
                             <span class="existencia-producto-bad">
                         {{ producto.existencia }} en existencia
