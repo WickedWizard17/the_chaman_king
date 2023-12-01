@@ -50,6 +50,10 @@ input:focus {
     outline: none;
 }
 
+select:focus {
+    outline: none;
+}
+
 .contenedor-form {
     margin: 0 200px 0 200px;
     display: flex;
@@ -101,6 +105,15 @@ input:focus {
 }
 
 .contenedor-form form input {
+    background-color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: #24252A;
+    font-size: 1.2rem;
+}
+
+.contenedor-form form select {
     background-color: white;
     border: none;
     border-radius: 0.5rem;
